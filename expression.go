@@ -3,7 +3,8 @@ package dynamofilter
 type Expression string
 
 const (
-	ExpressionContains Expression = "contains"
-	ExpressionEquals   Expression = "equals"
-	ExpressionIn       Expression = "in"
+	ExpressionContains Expression = "CONTAINS"
+	ExpressionEquals   Expression = "EQUALS"
+	ExpressionIn       Expression = "IN"
+	ExpressionNotIn    Expression = "NOT_IN"
 )

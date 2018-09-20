@@ -31,6 +31,11 @@ func (f filter) In(property string, value interface{}) filter {
 	return f
 }
 
+func (f filter) NotIn(property string, value interface{}) filter {
+	f[property] = itemBuilder(property, value, ExpressionNotIn)
+	return f
+}
+
 func (f filter) Builder() (string, []interface{}) {
 	var query []string
 	var args []interface{}

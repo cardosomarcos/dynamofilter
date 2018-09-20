@@ -27,6 +27,8 @@ func parser(exp Expression) func(property string, value interface{}) string {
 		v = "'%s' = %s"
 	case ExpressionIn:
 		v = "'%s' IN (%s)"
+	case ExpressionNotIn:
+		v = "NOT ('%s' IN (%s))"
 	}
 
 	return func(property string, value interface{}) string {
