@@ -1,9 +1,9 @@
 package filter
 
 import (
-	"pretty"
 	"testing"
 
+	"github.com/kr/pretty"
 	"github.com/stretchr/testify/assert"
 )
 
