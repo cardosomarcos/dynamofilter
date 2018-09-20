@@ -1,4 +1,4 @@
-package filter
+package dynamofilter
 
 import "github.com/kr/pretty"
 

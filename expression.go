@@ -1,4 +1,4 @@
-package filter
+package dynamofilter
 
 type Expression string
 

@@ -1,4 +1,4 @@
-package filter
+package dynamofilter
 
 import (
 	"testing"
@@ -9,7 +9,7 @@ import (
 func TestRepeat(t *testing.T) {
 	c := repeat(cities)
 	n := repeat(names)
-	
+
 	t.Run("success", func(t *testing.T) {
 		assert.Equal(t, c, "?,?")
 		assert.Equal(t, n, "?,?,?")

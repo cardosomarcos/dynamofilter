@@ -1,4 +1,4 @@
-package filter
+package dynamofilter
 
 var cities = []string{"SP", "RJ"}
 var names = []string{"Hari Seldon", "Stor Gendibal", "Hober Mallow"}
