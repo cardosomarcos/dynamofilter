@@ -1,8 +1,6 @@
 package filter
 
-import (
-	"pretty"
-)
+import "github.com/kr/pretty"
 
 type Item struct {
 	Property   string      `json:"property"`
