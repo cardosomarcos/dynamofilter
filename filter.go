@@ -8,6 +8,7 @@ type Filter interface {
 	Equals(property string, value interface{}) filter
 	Contains(property string, value interface{}) filter
 	In(property string, value interface{}) filter
+	NotIn(property string, value interface{}) filter
 	Builder() (string, []interface{})
 	Get(key string) Item
 }
