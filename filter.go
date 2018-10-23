@@ -1,6 +1,9 @@
 package dynamofilter
 
-import "strings"
+import (
+	"reflect"
+	"strings"
+)
 
 type filter map[string]Item
 
@@ -43,7 +46,15 @@ func (f filter) Builder() (string, []interface{}) {
 
 	for _, v := range f {
 		query = append(query, v.Query)
-		args = append(args, v.Value)
+
+		if reflect.ValueOf(v).Kind() == reflect.Slice && reflect.ValueOf(v).Len() > 0 {
+			r := reflect.ValueOf(v)
+			for i := 0; i < r.Len(); i++ {
+				args = append(args, r.Index(i).String())
+			}
+		} else {
+			args = append(args, v)
+		}
 	}
 
 	return strings.Join(query, " AND "), args

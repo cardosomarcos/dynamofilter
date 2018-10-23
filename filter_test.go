@@ -51,11 +51,8 @@ func TestBuilder(t *testing.T) {
 
 	t.Run("success", func(t *testing.T) {
 		filter, args := filter.Builder()
-
+		pretty.Log(filter, args)
 		assert.Equal(t, filter, pretty.Sprintf("'%s' = ? AND contains('%s', ?,?)", name, city))
-		assert.Equal(t, args, []interface{}{
-			value1,
-			[]string{cityValue1, cityValue2},
-		})
+		assert.Equal(t, args, value1, []string{cityValue1, cityValue2})
 	})
 }
