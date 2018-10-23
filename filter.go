@@ -47,13 +47,13 @@ func (f filter) Builder() (string, []interface{}) {
 	for _, v := range f {
 		query = append(query, v.Query)
 
-		if reflect.ValueOf(v).Kind() == reflect.Slice && reflect.ValueOf(v).Len() > 0 {
-			r := reflect.ValueOf(v)
+		if reflect.ValueOf(v.Value).Kind() == reflect.Slice && reflect.ValueOf(v.Value).Len() > 0 {
+			r := reflect.ValueOf(v.Value)
 			for i := 0; i < r.Len(); i++ {
 				args = append(args, r.Index(i).String())
 			}
 		} else {
-			args = append(args, v)
+			args = append(args, v.Value)
 		}
 	}
 
