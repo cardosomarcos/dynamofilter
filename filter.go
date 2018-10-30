@@ -12,6 +12,7 @@ type Filter interface {
 	Contains(property string, value interface{}) filter
 	In(property string, value interface{}) filter
 	NotIn(property string, value interface{}) filter
+	Between(property string, value interface{}) filter
 	Builder() (string, []interface{})
 	Get(key string) Item
 }
@@ -37,6 +38,11 @@ func (f filter) In(property string, value interface{}) filter {
 
 func (f filter) NotIn(property string, value interface{}) filter {
 	f[property] = itemBuilder(property, value, ExpressionNotIn)
+	return f
+}
+
+func (f filter) Between(property string, value interface{}) filter {
+	f[property] = itemBuilder(property, value, ExpressionBetween)
 	return f
 }
 

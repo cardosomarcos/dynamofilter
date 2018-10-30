@@ -19,19 +19,7 @@ func itemBuilder(property string, value interface{}, expression Expression) Item
 }
 
 func parser(exp Expression) func(property string, value interface{}) string {
-	var v string
-	switch exp {
-	case ExpressionContains:
-		v = "contains('%s', %s)"
-	case ExpressionEquals:
-		v = "'%s' = %s"
-	case ExpressionIn:
-		v = "'%s' IN (%s)"
-	case ExpressionNotIn:
-		v = "NOT ('%s' IN (%s))"
-	}
-
 	return func(property string, value interface{}) string {
-		return pretty.Sprintf(v, property, repeat(value))
+		return pretty.Sprintf(exp.toString(), property, repeat(value))
 	}
 }
