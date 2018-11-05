@@ -6,10 +6,9 @@ import (
 )
 
 func repeat(value interface{}) string {
-	size := 1
-	if reflect.ValueOf(value).Kind() == reflect.Slice {
-		size = reflect.ValueOf(value).Len()
+	if reflect.ValueOf(value).Kind() != reflect.Slice || reflect.ValueOf(value).Len() < 1 {
+		return "?"
 	}
-	query := strings.Repeat("?,", size)
+	query := strings.Repeat("?,", reflect.ValueOf(value).Len())
 	return query[:len(query)-1]
 }
