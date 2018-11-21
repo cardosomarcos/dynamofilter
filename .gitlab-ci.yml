@@ -1,0 +1,21 @@
+stages:
+    - build
+
+build:
+    stage: build
+    image: golang:1.9.2
+    cache:
+        paths:
+            - /apt-cache
+            - /go/src/github.com
+            - /go/src/golang.org
+            - /go/src/google.golang.org
+            - /go/src/gopkg.in
+    
+    
+    before_script:
+    script:
+        # Compile and name the binary as `hello`
+        - go build -o hello
+        # Execute the binary
+        - ./hello
