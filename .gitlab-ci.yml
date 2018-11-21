@@ -14,6 +14,10 @@ build:
     
     
     before_script:
+        - mkdir -p /go/src/gitlab.com/cardosomarcos /go/src/_/builds
+        - cp -r $CI_PROJECT_DIR /go/src/gitlab.com/cardosomarcos/dynamofilter
+        - ln -s /go/src/gitlab.com/cardosoamrcos /go/src/_/builds/cardosomarcos
+        - make dep
     script:
         # Compile and name the binary as `hello`
         - go build -o hello
