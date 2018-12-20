@@ -1,9 +1,9 @@
 package dynamofilter
 
 import (
+	"github.com/kr/pretty"
 	"testing"
 
-	"github.com/kr/pretty"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -69,6 +69,71 @@ func TestFilter_Between(t *testing.T) {
 		assert.Equal(t, res.Property, "name")
 		assert.Equal(t, res.Value, []string{value1, value2})
 		assert.Equal(t, res.Expression, ExpressionBetween)
+	})
+}
+
+func TestFilter_BeginsWith(t *testing.T) {
+	filter := NewFilter().BeginsWith(name, value1)
+
+	res := filter.Get("name")
+
+	t.Run("success", func(t *testing.T) {
+		assert.Equal(t, res.Query, "begins_with('name',?)")
+		assert.Equal(t, res.Property, "name")
+		assert.Equal(t, res.Value, value1)
+		assert.Equal(t, res.Expression, ExpressionBeginsWith)
+	})
+}
+
+func TestFilter_Less(t *testing.T) {
+	filter := NewFilter().Less(name, value1)
+
+	res := filter.Get("name")
+
+	t.Run("success", func(t *testing.T) {
+		assert.Equal(t, res.Query, "'name' < ?")
+		assert.Equal(t, res.Property, "name")
+		assert.Equal(t, res.Value, value1)
+		assert.Equal(t, res.Expression, ExpressionLess)
+	})
+}
+
+func TestFilter_Greater(t *testing.T) {
+	filter := NewFilter().Greater(name, value1)
+
+	res := filter.Get("name")
+
+	t.Run("success", func(t *testing.T) {
+		assert.Equal(t, res.Query, "'name' > ?")
+		assert.Equal(t, res.Property, "name")
+		assert.Equal(t, res.Value, value1)
+		assert.Equal(t, res.Expression, ExpressionGreater)
+	})
+}
+
+func TestFilter_LessOrEquals(t *testing.T) {
+	filter := NewFilter().LessOrEquals(name, value1)
+
+	res := filter.Get("name")
+
+	t.Run("success", func(t *testing.T) {
+		assert.Equal(t, res.Query, "'name' <= ?")
+		assert.Equal(t, res.Property, "name")
+		assert.Equal(t, res.Value, value1)
+		assert.Equal(t, res.Expression, ExpressionLessOrEqual)
+	})
+}
+
+func TestFilter_GreaterOrEquals(t *testing.T) {
+	filter := NewFilter().GreaterOrEquals(name, value1)
+
+	res := filter.Get("name")
+
+	t.Run("success", func(t *testing.T) {
+		assert.Equal(t, res.Query, "'name' >= ?")
+		assert.Equal(t, res.Property, "name")
+		assert.Equal(t, res.Value, value1)
+		assert.Equal(t, res.Expression, ExpressionGreaterOrEqual)
 	})
 }
 

@@ -9,6 +9,11 @@ type filter map[string]Item
 
 type Filter interface {
 	Equals(property string, value interface{}) filter
+	Less(property string, value interface{}) filter
+	Greater(property string, value interface{}) filter
+	LessOrEquals(property string, value interface{}) filter
+	GreaterOrEquals(property string, value interface{}) filter
+	BeginsWith(property string, value interface{}) filter
 	Contains(property string, value interface{}) filter
 	In(property string, value interface{}) filter
 	NotIn(property string, value interface{}) filter
@@ -23,6 +28,31 @@ func NewFilter() Filter {
 
 func (f filter) Equals(property string, value interface{}) filter {
 	f[property] = itemBuilder(property, value, ExpressionEquals)
+	return f
+}
+
+func (f filter) Less(property string, value interface{}) filter {
+	f[property] = itemBuilder(property, value, ExpressionLess)
+	return f
+}
+
+func (f filter) Greater(property string, value interface{}) filter {
+	f[property] = itemBuilder(property, value, ExpressionGreater)
+	return f
+}
+
+func (f filter) LessOrEquals(property string, value interface{}) filter {
+	f[property] = itemBuilder(property, value, ExpressionLessOrEqual)
+	return f
+}
+
+func (f filter) GreaterOrEquals(property string, value interface{}) filter {
+	f[property] = itemBuilder(property, value, ExpressionGreaterOrEqual)
+	return f
+}
+
+func (f filter) BeginsWith(property string, value interface{}) filter {
+	f[property] = itemBuilder(property, value, ExpressionBeginsWith)
 	return f
 }
 
