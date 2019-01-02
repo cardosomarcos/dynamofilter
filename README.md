@@ -25,7 +25,7 @@ s, _ := session.NewSession()
 dynamoConnection := dynamo.New(s, &aws.Config{
     // sa-east-1 => região de são paulo
     Region:     aws.String("sa-east-1"),
-	MaxRetries: aws.Int(3),
+    MaxRetries: aws.Int(3),
 })
 
 // Cria um novo filtro
