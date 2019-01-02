@@ -20,8 +20,8 @@ Agora, utilizando a [guregu/dynamo](https://github.com/guregu/dynamo) como conec
 // Variavel que recebe o resultado da query
 var data []map[string]interface{}
 
-s, _ := session.NewSession()
 // Abre a conexão com o dynamoDB
+s, _ := session.NewSession()
 dynamoConnection := dynamo.New(s, &aws.Config{
     // sa-east-1 => região de são paulo
     Region:     aws.String("sa-east-1"),
@@ -31,10 +31,10 @@ dynamoConnection := dynamo.New(s, &aws.Config{
 // Cria um novo filtro
 filter := dynamofilter.NewFilter()
 
-// Cria um filtro do tipo no nome
+// Cria um filtro do tipo nome
 filter.Equals("name", "Stor Gendibal")
 
-// Converte para poder usar no guru/dynamo
+// Converte os parametros para poder usar no guru/dynamo
 f, args := filter.Builder()
 
 // Executa a query no dynamo passando nosso filtro
